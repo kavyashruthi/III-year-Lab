@@ -10,4 +10,6 @@ i. character count ii. character stuffing and iii. bit stuffing
 3.
 4.
 
+### Output
 
+![output](boxes.jpg)

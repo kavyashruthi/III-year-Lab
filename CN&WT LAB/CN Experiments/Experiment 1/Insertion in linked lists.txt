@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+    int data;
+    struct node *next;
+};
+
+struct node *head = NULL;
+struct node *tail = NULL;
+struct node *new_link = NULL;
+
+
+void insert(int data)
+{
+    
+    new_link = (struct node*)malloc(sizeof(struct node));
+    new_link -> data = data;
+    new_link -> next = NULL;
+    
+    if(head==NULL)
+    {
+        head = new_link;
+        tail = new_link;
+    }
+    else
+    {
+        tail -> next = new_link;
+        tail = new_link;
+    }
+}
+void insert_at_beg(int data)
+{
+    struct node *beg = (struct node*)malloc(sizeof(struct node));
+    beg -> data = data;
+    beg -> next = head;
+    head = beg;
+}
+
+void insert_at_end(int data)
+{
+    struct node *end = (struct node*)malloc(sizeof(struct node));
+    end -> data = data;
+    tail -> next = end;
+    tail = end;
+    
+}
+
+void insert_at_pos(int data, int pos)
+{
+    struct node *temp = head;
+    struct node *link = (struct node*)malloc(sizeof(struct node));
+    for(int i=0; i<pos-1; i++)
+    {
+        temp = temp ->next;
+    }
+    
+    link -> data = data;
+    link -> next = temp -> next;
+    temp -> next = link;
+    
+}
+
+void display()
+{
+    struct node *dsply  = head;
+    while(dsply!= NULL)
+    {
+        printf("%d --> ",dsply -> data);
+        dsply = dsply -> next;
+    }
+    
+    printf("Null \n");
+    
+}
+
+
+int main(void) {
+	// your code goes here
+	insert(10);
+	printf("insertion of elements in linked list ");
+	display();
+	printf("insertion of elements at beginning of linked list ");
+	insert_at_beg(30);
+	display();
+	printf("insertion of elements at end of linked list ");
+	insert_at_end(40);
+	display();
+	printf("insertion of elements at a position in linked list ");
+	insert_at_pos(50,1);
+	display();
+	return 0;
+}
+
